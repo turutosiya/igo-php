@@ -59,23 +59,25 @@ Igo-php - PHPによる形態素解析プログラム
     値をセットすることで、文字化けを回避することが出来ます。
 
 (2) PHPプログラムから呼び出す場合
+   まず、composer.pharをダウンロードしそこで以下のコマンドを実行します。
+    php composer.phar require logue/igo-php
+   すると、このライブラリ一式がダウンロードされます。
+   
    a. 分かち書き
     <?php
-    require_once 'Igo.php';
-
+    require 'vendor/autoload.php';
+    
     $igo = new Igo("/home/user/ipadic");
     $result = $igo->wakati("すもももももももものうち");
     print_r($result);
-    ?>
 
    b. 形態素解析
     <?php
-    require_once 'Igo.php';
-
+    require 'vendor/autoload.php';
+    
     $igo = new Igo("/home/user/ipadic");
     $result = $igo->parse("すもももももももものうち");
     print_r($result);
-    ?>
 
     単体で使用する場合と同様に、指定した文字列から適切なエンコードが判定出
     来ないような場合は、Igo クラスのコンストラクタの第2引数に、出力エンコー
