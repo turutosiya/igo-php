@@ -1,21 +1,8 @@
 <?php
-require_once 'Morpheme.php';
-require_once 'ViterbiNode.php';
-require_once 'WordDic.php';
-require_once 'Unknown.php';
-require_once 'Matrix.php';
-require_once 'CharCategory.php';
-require_once 'FileMappedInputStream.php';
-require_once 'IntArray.php';
-require_once 'ShortArray.php';
-require_once 'CharArray.php';
-require_once 'KeyStream.php';
-require_once 'Searcher.php';
 
-define('IGO_RETURN_AS_ARRAY', false);
+namespace Igo;
 
 class Tagger {
-
 	private static $BOS_NODES = array();
 	public static $REDUCE = IGO_REDUCE_MODE;
 	public static $DIC_ENC;
@@ -45,11 +32,7 @@ class Tagger {
 	}
 
 	private function getEnc() {
-		if ($this->outEnc != null) {
-			return $this->outEnc;
-		} else {
-			return $this->enc;
-		}
+		return $this->outEnc !== null ? $this->outEnc : $this->enc;
 	}
 	/**
 	 * 形態素解析を行う
@@ -92,7 +75,7 @@ class Tagger {
 	 * @return 分かち書きされた文字列のリスト.
 	 */
 	public function wakati($text, $result = null) {
-		if ($result == null) {
+		if ($result === null) {
 			$result = array();
 		}
 
@@ -154,38 +137,3 @@ class Tagger {
 		return $vn;
 	}
 }
-
-class MakeLattice {
-	private $tagger;
-	private $nodesAry;
-	private $i;
-	private $prevs;
-	private $empty = true;
-
-	public function __construct($tagger, &$nodesAry) {
-		$this->tagger = $tagger;
-		$this->nodesAry = &$nodesAry;
-	}
-
-	public function set($i) {
-		$this->i = $i;
-		$this->prevs = $this->nodesAry[$i];
-		$this->empty = true;
-	}
-
-	public function call($vn) {
-		$this->empty = false;
-
-		if ($vn->isSpace) {
-			$this->nodesAry[$this->i + $vn->length] = $this->prevs;
-		} else {
-			$this->nodesAry[$this->i + $vn->length][] = $this->tagger->setMincostNode($vn, $this->prevs);
-		}
-	}
-
-	public function isEmpty() {
-		return $this->empty;
-	}
-}
-
-?>

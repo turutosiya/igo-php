@@ -1,19 +1,35 @@
 <?php
-require_once '../lib/Igo.php';
+spl_autoload_register(function($class) {
+    $parts = explode('\\', $class);
+
+    # Support for non-namespaced classes.
+    $parts[] = str_replace('_', DIRECTORY_SEPARATOR, array_pop($parts));
+
+    //$path = implode(DIRECTORY_SEPARATOR, $parts);
+    $path = '../lib/' . implode(DIRECTORY_SEPARATOR, $parts);
+
+    $file = stream_resolve_include_path($path.'.php');
+    if($file !== false) {
+        require $file;
+    }
+});
+
+use Igo\Igo;
 
 $encode = "UTF-8";
 ini_set("memory_limit", "1073741824"); //1024^3
 
-$text = mb_convert_encoding(file_get_contents("C:/Users/hirai/sanshodayu.txt"), $encode, "Shift_JIS");
+// $text = mb_convert_encoding(file_get_contents("./yoshinoya.txt"), $encode, "Shift_JIS");
+$text = file_get_contents("./yoshinoya.txt");
 
-$igo = new Igo("C:/Users/hirai/ipadic");
+$igo = new Igo("../ipadic");
 $bench = new benchmark();
 $bench->start();
 $result = $igo->parse($text);
 $bench->end();
 print_r("score: " . $bench->score);
 print_r("\n");
-$fp = fopen("C:/Users/hirai/php-igo.result", "w");
+$fp = fopen("./php-igo.result", "w");
 foreach ($result as $res) {
 	$buf = "";
 	$buf .= $res->surface;
