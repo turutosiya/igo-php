@@ -14,15 +14,15 @@ spl_autoload_register(function($class) {
     }
 });
 
-use Igo\Igo;
+use Igo\Tagger;
 
 $encode = "UTF-8";
 ini_set("memory_limit", "1073741824"); //1024^3
 
-// $text = mb_convert_encoding(file_get_contents("./yoshinoya.txt"), $encode, "Shift_JIS");
 $text = file_get_contents("./yoshinoya.txt");
 
-$igo = new Igo("../ipadic");
+$igo = new Tagger(array('dict_dir'=>'../jdic', 'reduce_mode'  => false));
+
 $bench = new benchmark();
 $bench->start();
 $result = $igo->parse($text);

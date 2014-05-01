@@ -15,11 +15,7 @@
 
 $IGO_BASEDIR = dirname(__FILE__).DIRECTORY_SEPARATOR;
 
-define('IGO_REDUCE_MODE', true);
-define('IGO_LITTLE_ENDIAN', true);
-define('IGO_MB_DETECT_ORDER', "ASCII,JIS,UTF-8,EUC-JP,SJIS");
-
-/** PHPQRCode root directory */
+/** IGO root directory */
 if (!defined('IGO_ROOT')) {
 	define('IGO_ROOT', dirname(__FILE__) . '/');
 	require(IGO_ROOT . 'Igo/Autoloader.php');

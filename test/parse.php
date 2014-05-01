@@ -14,9 +14,10 @@ spl_autoload_register(function($class) {
     }
 });
 
-use Igo\Igo;
+use Igo\Tagger;
 
-$igo = new Igo("..//ipadic", "UTF-8");
+$igo = new Tagger(array('dict_dir'=>'../jdic', 'output_encoding'=>'Shift_JIS'));
 $result = $igo->parse("すもももももももものうち");
 print_r($result);
+echo memory_get_peak_usage(), "\n";
 ?>

@@ -14,10 +14,10 @@ spl_autoload_register(function($class) {
     }
 });
 
-use Igo\Igo;
+use Igo\Tagger;
 
-$igo = new Igo("../ipadic", "UTF-8");
-$result = $igo->wakati("すもももももももものうち");
+$igo = new Tagger(array('dict_dir'=>'../ipadic', 'reduce_mode'  => true, 'output_encoding'=>'Shift_JIS'));
+$result = $igo->wakati("にわにはにわのにわとりがいる");
 print_r($result);
 echo memory_get_peak_usage(), "\n";
 ?>
