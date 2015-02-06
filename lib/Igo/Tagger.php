@@ -38,7 +38,7 @@ class Tagger {
 	public function __construct($options) {
 		$this->options = array_merge($this->options, $options);
 
-		if (empty($this->options['dict_dir'] || !is_dir($this->options['dict_dir'])){
+		if (empty($this->options['dict_dir']) || !is_dir($this->options['dict_dir'])){
 			throw new \Exception('Dictionary directory has not defined or not readable.');
 		}
 
