@@ -3,7 +3,7 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "https://github.com/logue/igo-php"
+			"url": "https://github.com/turutosiya/igo-php"
 		}
 	],
 	"description": "Morphological analysis engine 'Igo' porting and changed for PHP 5.3 and composer.",
@@ -13,14 +13,14 @@
 		"morphological analysis",
 		"chasen"
 	],
-	"homepage": "https://github.com/logue/igo-php",
+	"homepage": "https://github.com/turutosiya/igo-php",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "Logue",
-			"email": "logue@hotmail.co.jp",
-			"homepage": "http://logue.be/"
+			"name": "Toshiya TSURU",
+			"email": "turutosiya@gmail.com",
+			"homepage": "https://j.mp/turutosiya"
 		}
 	],
 	"require": {
