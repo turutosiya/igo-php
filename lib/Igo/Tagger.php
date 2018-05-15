@@ -24,7 +24,7 @@ class Tagger {
 		// バイトオーダー
 		'little_endian'     => true,
 		// mbstringの判定優先順位
-		'md_detect_order'   => 'ASCII,JIS,UTF-8,EUC-JP,SJIS',
+		'md_detect_order'   => 'UTF-8,ASCII,JIS,EUC-JP,SJIS',
 		// 出力エンコード
 		'output_encoding'   => 'UTF-8'
 	);
